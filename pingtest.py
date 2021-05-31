@@ -1,25 +1,34 @@
-# import built-in os library
-
 import os
+from datetime import datetime
+import time
+import threading  #implements threading in Python
+start = time.time()
+with open ("device") as file:
+    dump = file.read()
+    dump = dump.splitlines()
+    print(dump)
 
-# Open file for saving ping result to results.txt file
-results_file = open("results.txt", "w")
+def ping(ip):
+    res = os.popen(f"ping {ip} -n 5").read()
+    if "100% packet loss" in res:
+        print(f"down {ip} ")
+    #else:
+     #   print(f"up {ip}")
+threads = list()
 
-# list of ip address to need to ping
-ip_list = ["192.168.1.92", "8.8.8.8"]
+for ip in dump:
+    th = threading.Thread(target=ping, args=(ip,))
+    threads.append(th)  # appending the thread to the list
+# starting the threads
+for th in threads:
+    th.start()
+
+# waiting for the threads to finish
+for th in threads:
+    th.join()
+
+end = time.time()
 
 
+print(f'Total excecution time: {end-start}')
 
-# Loop to ping ip_list and check if device up or down
-# Outputs to results.txt file
-for ip in ip_list:
-    response = os.popen(f"ping {ip} -c 5").read() # if windows use os.popen(f"ping {ip} -n 1)
-    if "Received = 1" and "Approximate" in response:
-        print(f"UP {ip} Ping Successful")
-        results_file.write(f"UP {ip} Ping Successful" + "\n")
-    else:
-        print(f"Down {ip} Ping Unsuccessful")
-        results_file.write(f"Down {ip} Ping Unsuccessful" + "\n")
-
-# Close file when script completes
-results_file.close()
