@@ -9,7 +9,7 @@ with open ("device") as file:
     print(dump)
 
 def ping(ip):
-    res = os.popen(f"ping {ip} -n 5").read()
+    res = os.popen(f"ping {ip} -c 3").read()
     if "100% packet loss" in res:
         print(f"down {ip} ")
     #else:
