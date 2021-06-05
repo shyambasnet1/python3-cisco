@@ -12,8 +12,8 @@ def ping(ip):
     res = os.popen(f"ping {ip} -c 3").read()
     if "100% packet loss" in res:
         print(f"down {ip} ")
-    #else:
-     #   print(f"up {ip}")
+    else:
+        print(f"up {ip}")
 threads = list()
 
 for ip in dump:
