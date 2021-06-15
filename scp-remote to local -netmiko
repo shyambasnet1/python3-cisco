@@ -1,0 +1,6 @@
+from netmiko import ConnectHandler
+from netmiko import file_transfer
+device = {'device_type':'cisco_ios', 'ip':'192.168.1.114','username':'ram','password':'cisco'}
+connect = ConnectHandler(**device)
+transfer = file_transfer(connect, source_file='running-config', dest_file='running-config',  file_system='flash0:',direction='get',overwrite_file=True)
+print(transfer)
