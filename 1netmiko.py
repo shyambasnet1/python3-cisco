@@ -1,4 +1,4 @@
-
+https://docs.microsoft.com/en-us/cli/azure/azure-cli-vm-tutorial-3
 from netmiko import ConnectHandler
 
 iosv_l2 = {
