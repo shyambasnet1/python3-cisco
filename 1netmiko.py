@@ -1,5 +1,7 @@
 https://docs.microsoft.com/en-us/cli/azure/azure-cli-vm-tutorial-3
     https://github.com/PaloAltoNetworks/azure/tree/master/two-tier-sample
+        
+        https://drive.google.com/drive/folders/1lFrDux5P2BOLAFici6-wzpVuFk9E_32J?usp=sharing
 from netmiko import ConnectHandler
 
 iosv_l2 = {
